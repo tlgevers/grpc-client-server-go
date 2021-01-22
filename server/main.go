@@ -10,7 +10,8 @@ import (
 )
 
 const (
-	port = ":50051"
+	port    = ":50051"
+	network = "127.0.0.1"
 )
 
 type server struct {
@@ -25,6 +26,7 @@ func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloRe
 func main() {
 	fmt.Println("vim-go")
 	lis, err := net.Listen("tcp", port)
+	fmt.Println("net.Listen", lis.Addr().String())
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
